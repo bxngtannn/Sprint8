@@ -1,0 +1,153 @@
+.contenidoProductList {
+    display: flex;
+    justify-content: center;
+}
+
+.contenedorTarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 140px;
+    width: 90%;
+    height: 90%;
+    gap: 63px;
+}
+
+.product .abajo {
+    height: 133px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.product {
+    margin: 15px;
+    height: 440px
+}
+
+.product .administrador {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+
+}
+
+a:hover {
+    color: black;
+
+}
+
+.administrador .edit .boton {
+    background-color: #a7dfa7;
+    display: none;
+}
+
+.administrador .delet .boton {
+    background-color: #ff0000a6;
+    display: none;
+}
+
+.abajo:hover .administrador .edit .boton {
+    display: block;
+}
+
+.abajo:hover .administrador .delet button {
+    display: block;
+}
+
+.administrador .edit:hover .boton {
+    transition: 1s;
+    background-color: #56c956;
+}
+
+.administrador .delet:hover button {
+    transition: 1s;
+    background-color: #ff0000db;
+}
+
+.descrip-prod .texto {
+    text-align: center;
+}
+
+
+.product{
+    position: relative;
+    width: 300px;
+    height: 373px;
+    background-color: #dcdcdc;
+    margin: 10px 0px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.arriba{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+}
+
+.img-prod.arriba {
+    height: 225px
+}
+
+.img-prod img{
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-block;
+    margin: auto;
+}
+
+.abajo{
+    background-color: #ffffff;
+    margin: 4px;
+}
+
+.descrip-prod{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.descrip-prod p{
+    margin: 0;
+}
+
+.descrip-prod .texto{
+    font-size: 23px;
+}
+
+.descrip-prod .cuotas{
+    font-size: 10px;
+}
+
+.descrip-prod .disc{
+    position: absolute;
+    top: 200px;
+    right: 12px;
+    font-size: 20px;
+    color: #1cb521;
+}
+
+.abajo .bot-carrito{
+    display: flex;
+    justify-content: center;
+}
+
+.abajo .bot-carrito .boton{
+    border-radius: 10px;
+    background-color: #b4c4db;
+    padding: 5px;
+    margin: 8px;
+    font-size: 15px;
+    transition: background-color 500ms;
+}
+
+.abajo .bot-carrito .boton:hover{
+    background-color: #8998ab;
+}
+
