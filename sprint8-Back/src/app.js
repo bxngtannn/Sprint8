@@ -43,7 +43,7 @@ app.use('/products', productsRouter);
 app.use('/', usersRouter);
 
 
-const port = 3000
+const port = 3005
 
 
 app.listen(port, () => console.log(`aplicación funcionando ${port}!`))
