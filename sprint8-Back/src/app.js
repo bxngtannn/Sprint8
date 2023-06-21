@@ -5,6 +5,7 @@ const app = express();
 const path = require('path');
 const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
 const session = require('express-session');
+const cors = require('cors');
 
 
 //! ************ Middlewares************
@@ -26,6 +27,8 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));
 
+
+app.use(cors());
 app.use(userLogged)
 app.use(cartItems)
 //! ************ Template Engine  ************
@@ -44,6 +47,4 @@ app.use('/', usersRouter);
 
 
 const port = 3005
-
-
 app.listen(port, () => console.log(`aplicación funcionando ${port}!`))
