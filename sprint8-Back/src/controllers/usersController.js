@@ -15,6 +15,7 @@ const usersController = {
         } else {
             res.send('Estas Logueado, no puedes entrar')
         }
+        console.log(db);
     },
     procesoLogin: async (req, res) =>{
         let errores = validationResult(req)
@@ -115,6 +116,16 @@ const usersController = {
     cerrarSesion: function(req, res){
         req.session.destroy()
         res.redirect('/')
-    }
+    },
+    findAll :(req,res) =>{
+        Usuario.findAll().then(user =>{
+            return res.json(user)
+        })
+    },
+    findOne :(req,res) =>{
+        Usuario.findOne({where:{usuario_id:req.params.id}}).then(user =>{
+            return res.json(user)
+        })
+    } 
 }
 module.exports = usersController

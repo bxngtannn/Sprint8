@@ -64,4 +64,6 @@ router.put('/profile/edit/:id', usersController.editprofile)
 
 router.delete('/profile/delete/:id', usersController.destroyprofile)
 
+router.get('/Users/findAll', usersController.findAll);
+router.get('/Users/findOne/:id', usersController.findOne);
 module.exports = router;
