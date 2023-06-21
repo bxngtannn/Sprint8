@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/formulario.css" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <title>Inicio</title>
+  </head>
+
+  <body>
+    <%- include('./partials/header')%>
+
+    <div class="contenedor">
+      <% if (locals && locals.errores) { %>
+        <div class="errors-formul">
+          <% for( let error in errores ) { %>
+            <p class="form-check-error">&bull; <%= errores[error].msg %></p>
+          <% } %>
+        </div>
+        <% } %>
+        <% if (locals.error && error.msg) { %>
+          <div class="errors-formul">
+            <p class="form-check-error">&bull; <%= error.msg %>.
+            <!-- Haga <a href="/register">click aquí</a> si desea ir a Registrarse</p> -->
+          </div>
+        <% } %>
+      <form class="formularioLogin" action="/login" method="POST" >
+        <div class="arriba">
+          <h1>Iniciar sesión</h1>
+        </div>
+        <div class="abajo">
+          <div class="izquierda">
+            <label for="email">Email:</label>
+            <br />
+            <input type="email" id="email" name="email" class="form_input" value="<%= locals.old && old.email ? old.email : '' %>"/>
+            <br />
+            <label for="contraseña">Contraseña:</label>
+            <br />
+            <input type="password" id="contrasena" name="contra" class="form_input" />
+            <p>
+              Si tiene problemas para acceder a su cuenta envienos su mensaje al
+              mueblesTMT@gmail.com
+            </p>
+          </div>
+          <div class="derecha">
+            <button type="submit">Acceder</button>
+            <a href="/register"><button>Crear cuenta</button></a>
+            <img src="/images/logo.png" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <%- include('./partials/footer')%>
+    <script>
+
+      let form = document.querySelector('form.formularioLogin')
+      let errores = []
+      form.addEventListener('submit',function(event){
+        
+        errores = []
+        let email = document.querySelector('input#email')
+        if (email.value == '') {
+          errores.push('El campo Email no puede estar vacío.')
+        }
+        let contrasena = document.querySelector('input#contrasena')
+        if (contrasena.value == '') {
+          errores.push('El campo contraseña no puede estar vacío.')
+        }
+        let textoHTML = "<ul>";
+          for ( i = 0; i < errores.length; i++) {
+            textoHTML += "<li>" + errores[i] + "</li>";
+          }
+          textoHTML += "</ul>";
+          if(errores.length > 0){
+            event.preventDefault()
+            Swal.fire({
+              title: 'Error! 😡',
+              html: textoHTML,
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
+
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="/css/formulario.css" />
+    <title>Registro</title>
+  </head>
+
+  <body>
+
+    <%- include('./partials/header')%>
+
+    <div class="contenedor">
+      <% if (locals && locals.errores) { %>
+        <div class="errors-formul">
+          <% for( let error in errores ) { %>
+            <p class="form-check-error">&bull; <%= errores[error].msg %></p>
+          <% } %>
+        </div>
+        <% } %>
+        <% if (locals.error && error.msg) { %>
+          <div class="errors-formul">
+            <p class="form-check-error">&bull; <%= error.msg %>.
+            Haga <a href="/login">click aquí</a> si desea ir a Ingresar</p>
+          </div>
+        <% } %>
+
+      <form class="formularioRegister" action="/register" method="POST" enctype="multipart/form-data">
+        
+        <h1>Crea tu cuenta</h1>
+
+        <!-- <div class="foto-perfil">
+          <img src="/images/notProfile.jpg" width="100" height="100px">
+          <label for="fotoPerfil">Subir imagen</label>
+          <input type="file" name="fotoPerfil" id="fotoPerfil"/>
+        </div> -->
+        <div class="medio">
+          <div class="izquierda">
+            <label for="nombre">Nombre:</label>
+            <input type="text"  id="nombre" name="nombre" value="<%= locals.old && old.nombre ? old.nombre : '' %>"/>
+            <label for="email">Email:</label>
+            <input type="email"  id="email" name="email"  value="<%= locals.old && old.email ? old.email : '' %>"/>
+            <label for="contraseña">Contraseña</label>
+            <input type="password" id="contraseña" name="contrasena" />
+          </div>
+          <div class="derecha">
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" value="<%= locals.old && old.apellido ? old.apellido : '' %>"/>
+            <label for="telefono">Telefono:</label>
+            <input type="text" id="telefono" name='telefono' value="<%= locals.old && old.telefono ? old.telefono : '' %>"/>
+            <label for="fotoPerfil">Subir imagen</label>
+          <input type="file" name="img" id="img"/>
+          </div>
+        </div>
+        <div class="register-abajo">
+          <button type="submit">Registrarme</button>
+        </div>
+      </form>
+    </div>
+
+    <%- include('./partials/footer')%>
+
+          <script>
+
+            let form = document.querySelector('form.formularioRegister')
+            let errores = []
+            form.addEventListener('submit',function(event){
+              errores = []
+              let nombre = document.querySelector('input#nombre')
+              if (nombre.value == '') {
+                errores.push('El campo Nombre no puede estar vacío.')
+              }
+
+              let apellido = document.querySelector('input#apellido')
+              if (apellido.value == '') {
+                errores.push('El campo Apellido no puede estar vacío.')
+              }
+
+              let email = document.querySelector('input#email')
+              if (email.value == '') {
+                errores.push('El campo Email no puede estar vacío.')
+              }
+
+              let telefono = document.querySelector('input#telefono')
+              if (telefono.value == '') {
+                errores.push('El campo Teléfono no puede estar vacío.')
+              }
+              let textoHTML = "<ul>";
+                for ( i = 0; i < errores.length; i++) {
+                  textoHTML += "<li>" + errores[i] + "</li>";
+                }
+                textoHTML += "</ul>";
+                
+                if(errores.length > 0){
+                  event.preventDefault()
+                  Swal.fire({
+                    title: 'Error! 😡',
+                    html: textoHTML,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  })
+                }
+
+            })
+          </script>
+
+  </body>
+</html>
