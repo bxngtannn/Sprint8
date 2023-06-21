@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/productCart.css" />
+    <link rel="stylesheet" href="css/homestyle.css">
+    <title>Carrito</title>
+  </head>
+  
+  <body>
+    
+    <%- include('./partials/header')%>
+
+    <div class="contenedor-cart">
+      <div class="arriba">
+        <div class="izquierda">
+          <% let precioTotal = 0%>
+          <% let descuentoTotal = 0%>
+          <% if (locals.carrito) { %>
+            <% (locals.carrito).forEach(producto=> { %>
+              <%precioTotal += producto.precio%>
+              <% descuentoTotal += producto.descuento%>
+              <a href="/products/detail/<%=producto.producto_id%>">
+                <div class="tarjeta">
+                  <div class="tarjeta-izquierda">
+                    <div class="imagenProducto">
+                      <img src="/images/<%= producto.img %>" />
+                    </div>
+                    <div class="detalles">
+                      <p><%= producto.titulo %></p>
+                      <p class="precio">$<%=toThousand(producto.precio) %></p>
+                      <button type="reset">Eliminar</button>
+                    </div>
+                  </div>
+                  <div class="tarjeta-derecha">
+                      <span>-</span>
+                      <div class="cantida-producto">1</div>
+                      <span>+</span>
+                    </div>
+                  </div>
+              </a>
+              <% }) %>
+        </div>
+        <% } %>
+        <div class="derecha">
+          <div class="derecha-arriba">
+            <div class="logo">
+              <img src="images/logo.png" />
+            </div>
+          </div>
+          <div class="derecha-abajo">
+            <p>Precio lista: $<%= toThousand(precioTotal)%></p>
+            <p>Descuentos: $<%= toThousand((descuentoTotal)*precioTotal/100)%>  </p>
+            <p>Total: $<%= toThousand( precioTotal - (descuentoTotal)*precioTotal/100) %></p>
+            <div class="boton">
+              <button type="submit">Realizar compra</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="abajo">
+      <div class="boton">
+        <button>Seguir comprando</button>
+      </div>
+    </div>
+      <div class="sponsors">
+        <img src="/images/Diseño sin título.png" alt="sponsors">
+    </div>
+
+    <%- include('./partials/footer')%>
+  </body>
+</html>
