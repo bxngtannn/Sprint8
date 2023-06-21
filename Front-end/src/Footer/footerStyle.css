@@ -1,11 +1,11 @@
-/* @font-face {
+@font-face {
     font-family: Nunito;
-    src: url(../fonts/Nunito-VariableFont_wght.ttf);
-} */
-/* 
+    src: url(../assets/Fuentes/Nunito-VariableFont_wght.ttf);
+}
+
 *{
     font-family: "Nunito";
-} */
+}
 
 body{
     margin: 0;

@@ -1,12 +1,12 @@
-/* @font-face {
+@font-face {
     font-family: 'Nunito';
-    src: url(../fonts/Nunito-VariableFont_wght.ttf);
-} */
+    src: url(../assets/Fuentes/Nunito-VariableFont_wght.ttf);
+}
 
 body {
     box-sizing: border-box;
     margin: 0;
-    /* font-family: 'Nunito'; */
+    font-family: 'Nunito';
 }
 
 .header .logo{

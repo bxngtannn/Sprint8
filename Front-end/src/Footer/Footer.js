@@ -46,7 +46,7 @@ function Header() {
                         <span><img src={require("./img/Tarjetas/visa@2x.png")} alt=""/></span>
                     </div>
                     <div class="copyright">
-                    &copy; Derechos reservados TMT 2022-2023 | Desarrollado por los mas perrones
+                        &copy; Derechos reservados TMT 2022-2023 | Desarrollado por los mas perrones
                     </div>
                 </div>
             </div>

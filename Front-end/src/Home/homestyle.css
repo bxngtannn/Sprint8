@@ -1,11 +1,11 @@
-/* @font-face {
+@font-face {
     font-family: Nunito;
-    src: url(../fonts/Nunito-VariableFont_wght.ttf);
-} */
+    src: url(../assets/Fuentes/Nunito-VariableFont_wght.ttf);
+}
 
-/* *{
+*{
     font-family: "Nunito";
-} */
+}
 
 .dd-content .minidd span{
     width: 143px !important; 
