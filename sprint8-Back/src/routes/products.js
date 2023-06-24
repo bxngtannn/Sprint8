@@ -10,6 +10,8 @@ const {check} = require("express-validator")
 const productsController = require('../controllers/productsController');
 
 
+// ************ api Require ************
+const apiController = require("../controllers/api/apiProducts")
 // validaciones de Creacion de productos
 const validacionesCrear = [
     check('titulo').notEmpty().withMessage('Ingrese un titulo').bail()
@@ -32,7 +34,11 @@ const validacionesEdit = [
 
 /*** GET ALL PRODUCTS ***/ 
 router.get('/productos', productsController.productList);
-
+/*** obtener productos desde la api ***/
+router.get('/api/productos',apiController.productList)
+router.get('/api/detail/:id',apiController.detail)
+router.get('/api/filtrar/:id',apiController.filtrar)
+router.get('/api/filtroTitulo',apiController.filtroTitulo)
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create', productsController.create); 
 router.post('/', uploadFile.single('img'),validacionesCrear,productsController.store); 
