@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState,useEffect } from 'react';
 import './productList.css';
 
 
@@ -67,6 +67,57 @@ function ProductsList() {
 }
 
 function Productos() {
+const [productosApi,setProductos] = useState([])
+useEffect(()=>{
+    const productsAll= async () => {
+        try {
+        const response = await fetch('http://localhost:3005/products/api/productos');
+        const jsonData = await response.json();
+        setProductos()
+        console.log(jsonData)
+        console.log(productosApi)
+    } catch (error) {
+        console.log('Error al obtener los datos:', error);
+        }
+    };
+    const productFilter= async () => {
+        try {
+        const response = await fetch('http://localhost:3005/products/api/filtrar/2');
+        const jsonData = await response.json();
+        setProductos()
+        console.log(jsonData)
+        console.log(productosApi)
+    } catch (error) {
+        console.log('Error al obtener los datos:', error);
+        }
+    };
+    const productDetail= async () => {
+        try {
+        const response = await fetch(`http://localhost:3005/products/api/detail/3`);
+        const jsonData = await response.json();
+        setProductos()
+        console.log(jsonData)
+        console.log(productosApi)
+    } catch (error) {
+        console.log('Error al obtener los datos:', error);
+        }
+    };
+    const productTitle= async () => {
+        try {
+        const response = await fetch(`http://localhost:3005/products/api/filtroTitulo`);
+        const jsonData = await response.json();
+        setProductos()
+        console.log(jsonData)
+        console.log(productosApi)
+    } catch (error) {
+        console.log('Error al obtener los datos:', error);
+        }
+    };
+    productsAll()
+    productDetail()
+    productFilter()
+    productTitle()
+},[])
     const productos = [1, 2, 2, 3, 34, 45, 6, 6, 4, 2, 2, 3]
     return (
         <React.Fragment>
