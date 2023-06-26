@@ -12,7 +12,7 @@ function Producto() {
             try {
                 const response = await fetch('http://localhost:3005/products/api/detail/' + idProd);
                 const jsonData = await response.json();
-                setProductos(jsonData)
+                setProductos(jsonData.data)
             } catch (error) {
                 console.log('Error al obtener los datos:', error);
             }
