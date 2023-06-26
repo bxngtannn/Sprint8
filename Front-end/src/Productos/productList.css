@@ -19,7 +19,11 @@
     justify-content: space-evenly;
 }
 
-
+.dropdown{
+    top: 10px;
+    left: 10px;
+    margin: 10px;
+}
 
 .product .administrador {
     display: flex;

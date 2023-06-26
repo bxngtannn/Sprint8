@@ -17,24 +17,15 @@ module.exports = {
 
   detail: (req, res) => {
     Producto.findByPk(req.params.id)
-      .then(function (producto) {
-        Producto.findAll({
-          where: { sale: "OnSale" },
-        })
-          .then(() => {
-            console.log(producto)
+          .then((producto) => {
             return res.status(200).json({
               data:producto,
               status:"OK"
             });
           })
-          .catch(() => {
-            return res.status(404);
+          .catch((e) => {
+            console.log("ocurrio un error",e)
           });
-      })
-      .catch(function (e) {
-        res.send(e);
-      });
   },
 
   filtrar: (req, res) => {
