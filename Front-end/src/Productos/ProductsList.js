@@ -73,76 +73,73 @@ useEffect(()=>{
         try {
         const response = await fetch('http://localhost:3005/products/api/productos');
         const jsonData = await response.json();
-        setProductos()
-        console.log(jsonData)
-        console.log(productosApi)
+        console.log(jsonData.data)
+        setProductos(jsonData.data)
     } catch (error) {
         console.log('Error al obtener los datos:', error);
         }
     };
-    const productFilter= async () => {
+    const productFilter= async (cat) => {
         try {
-        const response = await fetch('http://localhost:3005/products/api/filtrar/2');
+        const response = await fetch('http://localhost:3005/products/api/filtrar/' + cat);
         const jsonData = await response.json();
-        setProductos()
+        setProductos(jsonData.data)
         console.log(jsonData)
         console.log(productosApi)
     } catch (error) {
         console.log('Error al obtener los datos:', error);
         }
     };
-    const productDetail= async () => {
-        try {
-        const response = await fetch(`http://localhost:3005/products/api/detail/3`);
-        const jsonData = await response.json();
-        setProductos()
-        console.log(jsonData)
-        console.log(productosApi)
-    } catch (error) {
-        console.log('Error al obtener los datos:', error);
-        }
-    };
-    const productTitle= async () => {
-        try {
-        const response = await fetch(`http://localhost:3005/products/api/filtroTitulo`);
-        const jsonData = await response.json();
-        setProductos()
-        console.log(jsonData)
-        console.log(productosApi)
-    } catch (error) {
-        console.log('Error al obtener los datos:', error);
-        }
-    };
+    // const productDetail= async () => {
+    //     try {
+    //     const response = await fetch(`http://localhost:3005/products/api/detail/3`);
+    //     const jsonData = await response.json();
+    //     setProductos()
+    //     console.log(jsonData)
+    //     console.log(productosApi)
+    // } catch (error) {
+    //     console.log('Error al obtener los datos:', error);
+    //     }
+    // };
+    // const productTitle= async () => {
+    //     try {
+    //     const response = await fetch(`http://localhost:3005/products/api/filtroTitulo`);
+    //     const jsonData = await response.json();
+    //     setProductos()
+    //     console.log(jsonData)
+    //     console.log(productosApi)
+    // } catch (error) {
+    //     console.log('Error al obtener los datos:', error);
+    //     }
+    // };
     productsAll()
-    productDetail()
-    productFilter()
-    productTitle()
+    // productFilter(2)
+    // productDetail()
+    
+    // productTitle()
 },[])
-    const productos = [1, 2, 2, 3, 34, 45, 6, 6, 4, 2, 2, 3]
+
     return (
         <React.Fragment>
             <div class="contenidoProductList">
 
                 <div class="contenedorTarjetas">
 
-                    {productos.map((item, i) => (
+                    {productosApi.map((item, i) => (
                         <div class="product"><a href="/products/detail/<%=producto.producto_id%>">
                             <div class="img-prod arriba">
-                                {/* <img src="/images/<%= producto.img %>"
-                        alt="<%= producto.titulo %>"> */}
+                            <img src={require("./img/"+ item.img)} alt="<%= producto.titulo %>"/>
                             </div>
                             <div class="abajo">
                                 <div class="descrip-prod">
-                                    <p className='nombre texto'>Holaa, {item}</p>
-                                    {/* <p class="nombre texto"><%=producto.titulo%></p>
-                                <p class="cuotas"><%= producto.cuotas %> cuotas sin interés.</p>
-                                <p class="precio texto">$<%=toThousand(producto.precio) %></p> */}
-                                    {/* <% if (producto.descuento>0) { %> */}
+                                    <p className='nombre texto'>{item.titulo}</p>
+                                <p class="cuotas">{item.cuotas} cuotas sin interés.</p>
+                                <p class="precio texto">${item.precio}</p>
+                                {item.descuento > 0 ? (
                                     <div class="disc">
-                                        {/* <p><%=producto.descuento %>%</p> */}
+                                        <p>{item.descuento}%</p>
                                     </div>
-
-                                    {/*  <% } %> */}
+                                ) : null}   
                                 </div>
                                 <div class="bot-carrito">
                                     <a href="/productCart"><span
