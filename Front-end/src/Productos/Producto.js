@@ -12,11 +12,12 @@ function Producto() {
             try {
                 const response = await fetch('http://localhost:3005/products/api/detail/' + idProd);
                 const jsonData = await response.json();
-                setProductos(producto)
+                setProductos(jsonData)
             } catch (error) {
                 console.log('Error al obtener los datos:', error);
             }
         };
+        productDetail()
     }, [])
     return (
         <React.Fragment>
@@ -24,6 +25,8 @@ function Producto() {
                 <div class="infoproducto">
                     <div class="izquierda">
                         <div class="titulo">
+
+
                             <h1>
                                 {producto.titulo}
 
